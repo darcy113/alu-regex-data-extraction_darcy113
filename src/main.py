@@ -1,23 +1,4 @@
-"""
-ALU Regex Data Extraction & Secure Validation
-=============================================
-Author : Junior Frontend Developer
-Date   : 2024-06-10
-Purpose: Extract and validate structured data from raw API text using regex.
-         All input is treated as untrusted. Sensitive data is masked in output.
 
-Security note
--------------
-Input may contain SQL injection attempts, XSS payloads, HTTP response splitting,
-or other hostile content. This program:
-  1. Sanitises raw lines before matching (strips control characters).
-  2. Validates matched values against strict allow-lists / deny-lists.
-  3. Masks credit-card numbers in all output (PCI-DSS principle of least exposure).
-  4. Rejects patterns that contain HTML/JS injection markers.
-  5. Rejects URLs with embedded HTML angle brackets.
-  6. Phone numbers are validated by digit-count range (E.164).
-  7. Never eval()s or exec()s any content from the input file.
-"""
 
 import re
 import json
@@ -381,7 +362,7 @@ def extract_all(text: str) -> dict:
             else:
                 results["urls"]["valid"].append(url)
 
-        # ---- PHONES -------------------------------------------------------
+        # ---- PHONES 
         for m in PHONE_PATTERN.finditer(line):
             phone = m.group(1).strip()
             if not phone or phone in seen["phones"]:
@@ -393,7 +374,7 @@ def extract_all(text: str) -> dict:
             seen["phones"].add(phone)
             results["phones"]["valid"].append(phone)
 
-        # ---- CREDIT CARDS ------------------------------------------------
+        #  CREDIT CARDS 
         for m in CARD_PATTERN.finditer(line):
             raw_card = m.group(1)
             if raw_card in seen["cards"]:
