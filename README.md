@@ -51,14 +51,12 @@ The program will:
 
 | # | Type | Details |
 |---|------|---------|
-| 1 | **Email addresses** | General + ALU-specific domain validation |
-| 2 | **URLs** | `http`/`https` only; injection-containing lines skipped |
-| 3 | **Phone numbers** | E.164 (7–15 digits); international and local formats |
-| 4 | **Credit card numbers** | Visa, MC, Amex, Discover; Luhn-checked; masked in output |
-| 5 | **Time (12h & 24h)** | `09:00 AM`, `14:00` etc.; invalid times rejected |
-| 6 | **HTML tags** | Classified as safe / dangerous / suspicious |
-| 7 | **Hashtags** | Must start with a letter; pure-numeric tags rejected |
-| 8 | **Currency amounts** | `$`, `€`, `£`; leading or trailing symbol |
+ 1 **Email addresses** | General + ALU-specific domain validation |
+ 2 **URLs** | `http`/`https` only; injection-containing lines skipped |
+ 3 **Phone numbers** | E.164 (7–15 digits); international and local formats |
+ 4 **Credit card numbers** | Visa, MC, Amex, Discover; Luhn-checked; masked in output |
+ 5 **Time (12h & 24h)** | `09:00 AM`, `14:00` etc.; invalid times rejected |
+ 6 **HTML tags**  Classified as safe / dangerous / suspicious |
 
 ---
 
