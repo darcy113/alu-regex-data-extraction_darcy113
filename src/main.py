@@ -255,34 +255,6 @@ def classify_html_tag(tag_string: str) -> str:
     return "safe"
 
 
-# ---- 8. HASHTAGS ---------------------------------------------------------
-# Must start with a letter after #. Pure-numeric hashtags are rejected.
-HASHTAG_PATTERN = re.compile(
-    r"""
-    (?<![&\w])           # not preceded by & (avoids HTML entities)
-    \#
-    ([a-zA-Z]            # first char must be a letter
-    [a-zA-Z0-9_]*)       # rest: letters, digits, underscores
-    \b
-    """,
-    re.VERBOSE,
-)
-
-
-# ---- 9. CURRENCY AMOUNTS -------------------------------------------------
-# $, €, £ — leading or trailing symbol.
-CURRENCY_PATTERN = re.compile(
-    r"""
-    (
-        [\$€£]
-        \d{1,3}(?:,\d{3})*(?:\.\d{2})?   # leading symbol + amount
-        |
-        \d{1,3}(?:,\d{3})*(?:\.\d{2})?
-        \s?[\$€£]                          # trailing symbol
-    )
-    """,
-    re.VERBOSE,
-)
 
 # ---------------------------------------------------------------------------
 # MAIN EXTRACTION ENGINE
