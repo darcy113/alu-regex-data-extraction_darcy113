@@ -1,5 +1,3 @@
-
-
 import re
 import json
 import unicodedata
@@ -254,6 +252,18 @@ def classify_html_tag(tag_string: str) -> str:
         return "suspicious"
     return "safe"
 
+
+# ---- 9. HASHTAGS -----------------------------------------------------------
+# Matches a '#' followed by one or more word characters (letters, digits,
+# underscore). Requires at least one character after '#', so an empty
+# '#' (e.g. "#  (empty)") is never matched.
+HASHTAG_PATTERN = re.compile(r"#(\w+)")
+
+# ---- 10. CURRENCY ----------------------------------------------------------
+# Matches USD ($), EUR (€), and GBP (£) amounts, with optional thousands
+# separators and an optional decimal component, e.g. $1,250.00, €2,100.75,
+# £750.00, $99999.
+CURRENCY_PATTERN = re.compile(r"([$€£]\s?\d+(?:,\d{3})*(?:\.\d{1,2})?)")
 
 
 # ---------------------------------------------------------------------------
